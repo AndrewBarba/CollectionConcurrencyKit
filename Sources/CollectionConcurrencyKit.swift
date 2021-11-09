@@ -56,6 +56,8 @@ public extension Sequence {
                         await operation(element)
                     }
                 }
+
+                await group.waitForAll()
             }
 
             iteration += 1
@@ -98,8 +100,7 @@ public extension Sequence {
                     }
                 }
 
-                // Propagate any errors thrown by the group's tasks:
-                for try await _ in group {}
+                try await group.waitForAll()
             }
 
             iteration += 1
