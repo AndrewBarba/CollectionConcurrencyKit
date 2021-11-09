@@ -51,6 +51,15 @@ let htmlStrings = try await urls.concurrentMap { url -> String in
 }
 ```
 
+If you have a large number of items in your sequence, you most likely want to limit the number of concurrent tasks that can occur in parallel. To do so provide the `maximumConcurrency` argument:
+
+```swift
+let htmlStrings = try await urls.concurrentMap(maximumConcurrency: 8) { url -> String in
+    let (data, _) = try await URLSession.shared.data(from: url)
+    return String(decoding: data, as: UTF8.self)
+}
+```
+
 And if we instead wanted to parallelize our `asyncCompactMap`-based variant of the above code, then we could do so by using `concurrentCompactMap`:
 
 ```swift
@@ -80,7 +89,7 @@ CollectionConcurrencyKit is distributed using the [Swift Package Manager](https:
 let package = Package(
     ...
     dependencies: [
-        .package(url: "https://github.com/JohnSundell/CollectionConcurrencyKit.git", from: "0.1.0")
+        .package(url: "https://github.com/AndrewBarba/CollectionConcurrencyKit.git", from: "0.1.0")
     ],
     ...
 )
