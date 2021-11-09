@@ -1,5 +1,7 @@
 # CollectionConcurrencyKit
 
+> Note: This is a forked version of the original **CollectionConcurrencyKit** which provides a `maximumConcurrency` argument to all concurrent methods. I strongly believe not having this option is a mistake in the original design, and will lead to many innefiecient uses of the concurrent variants of these functions. 
+
 Welcome to **CollectionConcurrencyKit**, a lightweight Swift package that adds asynchronous and concurrent versions of the standard `map`, `flatMap`, `compactMap`, and `forEach` APIs to all Swift collections that conform to the `Sequence` protocol. That includes built-in types, like `Array`, `Set` and, `Dictionary`, as well as any custom collections that conform to that protocol.
 
 CollectionConcurrencyKit can be used to implement high-performance data processing and algorithms in a way that fully utilizes Swift’s built-in concurrency system. It’s heavily unit tested, fully documented, and used in production to generate [swiftbysundell.com](https://swiftbysundell.com).
